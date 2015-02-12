@@ -26,6 +26,14 @@ class CB2::Breaker
     false
   end
 
+  def open!
+    strategy.open!
+  end
+
+  def close!
+    strategy.close!
+  end
+
   def process_count
     strategy.count if strategy.respond_to?(:count)
   rescue Redis::BaseError

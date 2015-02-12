@@ -8,4 +8,12 @@ class CB2::Stub
   def open?
     !allow
   end
+
+  def open!
+    @allow = false
+  end
+
+  def close!
+    @allow = true
+  end
 end
