@@ -18,6 +18,11 @@ class CB2::RollingWindow
     redis.set(key, @last_open)
   end
 
+  def close!
+    @last_open = nil
+    redis.del(key)
+  end
+
   def half_open?
     last_open && last_open.to_i < (Time.now.to_i - reenable_after)
   end

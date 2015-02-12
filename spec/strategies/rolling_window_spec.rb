@@ -42,6 +42,18 @@ describe CB2::RollingWindow do
     end
   end
 
+  describe "#close!" do
+    before do
+      strategy.open!
+    end
+
+    it "removes the key in redis" do
+      strategy.close!
+      refute redis.get(strategy.key)
+      refute strategy.open?
+    end
+  end
+
   describe "#error" do
     before { @t = Time.now }
 
